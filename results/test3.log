@@ -1,0 +1,564 @@
+# vsim -cvgperinstance -vopt -voptargs="+acc" -coverage -sva -c -do " log -r /* ;coverage save -onexit mem_cov3;run -all; exit" -wlf wave_file3.wlf -l test3.log -sv_seed 3256099792 work.top "+UVM_TESTNAME=router_large" 
+# Start time: 23:58:05 on Feb 05,2026
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2022.1_2 linux_x86_64 Apr  2 2022
+# //
+# //  Copyright 1991-2022 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.router_if(fast)
+# Loading mtiUvm.uvm_pkg(fast)
+# Loading work.router_test_pkg(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# Loading work.top(fast)
+# Loading work.router_if(fast__2)
+# Loading work.router_if(fast__3)
+# Loading work.router_top(fast)
+# Loading work.FSM_RTL(fast)
+# Loading work.router_synch(fast)
+# Loading work.router_register(fast)
+# Loading work.router_fifo(fast)
+# Loading /home/cad/eda/Mentor_Graphics/Questasim/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
+# ** Warning: (vsim-8634) Code was not compiled with coverage options.
+#  log -r /* 
+# coverage save -onexit mem_cov3
+# run -all
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# UVM_INFO @ 0: reporter [RNTST] Running test router_large...
+# UVM_INFO ../test/router_vtest.sv(181) @ 0: uvm_test_top [TEST_RUN] Starting Read Sequence on Port 0
+# UVM_INFO ../test/router_vtest.sv(189) @ 0: uvm_test_top [TEST_RUN] Starting Write Sequence on Port 0
+# UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+# --------------------------------------------------------------------
+# Name                         Type                        Size  Value
+# --------------------------------------------------------------------
+# uvm_test_top                 router_large                -     @480 
+#   env_h                      router_tb                   -     @500 
+#     rdagt_toph               router_rd_agnt_top          -     @527 
+#       rd_agnth[0]            router_rd_agent             -     @548 
+#         rd_drvh              router_rd_driver            -     @586 
+#           rsp_port           uvm_analysis_port           -     @601 
+#           seq_item_port      uvm_seq_item_pull_port      -     @593 
+#         rd_monh              router_rd_monitor           -     @571 
+#           mp                 uvm_analysis_port           -     @578 
+#         rd_seqrh             router_rd_sequencer         -     @609 
+#           rsp_export         uvm_analysis_export         -     @616 
+#           seq_item_export    uvm_seq_item_pull_imp       -     @710 
+#           arbitration_queue  array                       0     -    
+#           lock_queue         array                       0     -    
+#           num_last_reqs      integral                    32    'd1  
+#           num_last_rsps      integral                    32    'd1  
+#       rd_agnth[1]            router_rd_agent             -     @555 
+#         rd_drvh              router_rd_driver            -     @742 
+#           rsp_port           uvm_analysis_port           -     @757 
+#           seq_item_port      uvm_seq_item_pull_port      -     @749 
+#         rd_monh              router_rd_monitor           -     @727 
+#           mp                 uvm_analysis_port           -     @734 
+#         rd_seqrh             router_rd_sequencer         -     @765 
+#           rsp_export         uvm_analysis_export         -     @772 
+#           seq_item_export    uvm_seq_item_pull_imp       -     @866 
+#           arbitration_queue  array                       0     -    
+#           lock_queue         array                       0     -    
+#           num_last_reqs      integral                    32    'd1  
+#           num_last_rsps      integral                    32    'd1  
+#       rd_agnth[2]            router_rd_agent             -     @562 
+#         rd_drvh              router_rd_driver            -     @898 
+#           rsp_port           uvm_analysis_port           -     @913 
+#           seq_item_port      uvm_seq_item_pull_port      -     @905 
+#         rd_monh              router_rd_monitor           -     @883 
+#           mp                 uvm_analysis_port           -     @890 
+#         rd_seqrh             router_rd_sequencer         -     @921 
+#           rsp_export         uvm_analysis_export         -     @928 
+#           seq_item_export    uvm_seq_item_pull_imp       -     @1022
+#           arbitration_queue  array                       0     -    
+#           lock_queue         array                       0     -    
+#           num_last_reqs      integral                    32    'd1  
+#           num_last_rsps      integral                    32    'd1  
+#     router_scoreboard        router_scoreboard           -     @540 
+#       fifo_rdh[0]            uvm_tlm_analysis_fifo #(T)  -     @1085
+#         analysis_export      uvm_analysis_imp            -     @1124
+#         get_ap               uvm_analysis_port           -     @1116
+#         get_peek_export      uvm_get_peek_imp            -     @1100
+#         put_ap               uvm_analysis_port           -     @1108
+#         put_export           uvm_put_imp                 -     @1092
+#       fifo_rdh[1]            uvm_tlm_analysis_fifo #(T)  -     @1132
+#         analysis_export      uvm_analysis_imp            -     @1171
+#         get_ap               uvm_analysis_port           -     @1163
+#         get_peek_export      uvm_get_peek_imp            -     @1147
+#         put_ap               uvm_analysis_port           -     @1155
+#         put_export           uvm_put_imp                 -     @1139
+#       fifo_rdh[2]            uvm_tlm_analysis_fifo #(T)  -     @1179
+#         analysis_export      uvm_analysis_imp            -     @1218
+#         get_ap               uvm_analysis_port           -     @1210
+#         get_peek_export      uvm_get_peek_imp            -     @1194
+#         put_ap               uvm_analysis_port           -     @1202
+#         put_export           uvm_put_imp                 -     @1186
+#       fifo_wrh[0]            uvm_tlm_analysis_fifo #(T)  -     @1038
+#         analysis_export      uvm_analysis_imp            -     @1077
+#         get_ap               uvm_analysis_port           -     @1069
+#         get_peek_export      uvm_get_peek_imp            -     @1053
+#         put_ap               uvm_analysis_port           -     @1061
+#         put_export           uvm_put_imp                 -     @1045
+#     wragt_toph               router_wr_agnt_top          -     @516 
+#       wr_agnth[0]            router_wr_agent             -     @1227
+#         wr_drvh              router_wr_driver            -     @1251
+#           rsp_port           uvm_analysis_port           -     @1266
+#           seq_item_port      uvm_seq_item_pull_port      -     @1258
+#         wr_monh              router_wr_monitor           -     @1236
+#           monitor_port       uvm_analysis_port           -     @1243
+#         wr_seqrh             router_wr_sequencer         -     @1274
+#           rsp_export         uvm_analysis_export         -     @1281
+#           seq_item_export    uvm_seq_item_pull_imp       -     @1375
+#           arbitration_queue  array                       0     -    
+#           lock_queue         array                       0     -    
+#           num_last_reqs      integral                    32    'd1  
+#           num_last_rsps      integral                    32    'd1  
+# --------------------------------------------------------------------
+# 
+# UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+# --------------------------------------------------------------------
+# Name                         Type                        Size  Value
+# --------------------------------------------------------------------
+# uvm_test_top                 router_large                -     @480 
+#   env_h                      router_tb                   -     @500 
+#     rdagt_toph               router_rd_agnt_top          -     @527 
+#       rd_agnth[0]            router_rd_agent             -     @548 
+#         rd_drvh              router_rd_driver            -     @586 
+#           rsp_port           uvm_analysis_port           -     @601 
+#           seq_item_port      uvm_seq_item_pull_port      -     @593 
+#         rd_monh              router_rd_monitor           -     @571 
+#           mp                 uvm_analysis_port           -     @578 
+#         rd_seqrh             router_rd_sequencer         -     @609 
+#           rsp_export         uvm_analysis_export         -     @616 
+#           seq_item_export    uvm_seq_item_pull_imp       -     @710 
+#           arbitration_queue  array                       0     -    
+#           lock_queue         array                       0     -    
+#           num_last_reqs      integral                    32    'd1  
+#           num_last_rsps      integral                    32    'd1  
+#       rd_agnth[1]            router_rd_agent             -     @555 
+#         rd_drvh              router_rd_driver            -     @742 
+#           rsp_port           uvm_analysis_port           -     @757 
+#           seq_item_port      uvm_seq_item_pull_port      -     @749 
+#         rd_monh              router_rd_monitor           -     @727 
+#           mp                 uvm_analysis_port           -     @734 
+#         rd_seqrh             router_rd_sequencer         -     @765 
+#           rsp_export         uvm_analysis_export         -     @772 
+#           seq_item_export    uvm_seq_item_pull_imp       -     @866 
+#           arbitration_queue  array                       0     -    
+#           lock_queue         array                       0     -    
+#           num_last_reqs      integral                    32    'd1  
+#           num_last_rsps      integral                    32    'd1  
+#       rd_agnth[2]            router_rd_agent             -     @562 
+#         rd_drvh              router_rd_driver            -     @898 
+#           rsp_port           uvm_analysis_port           -     @913 
+#           seq_item_port      uvm_seq_item_pull_port      -     @905 
+#         rd_monh              router_rd_monitor           -     @883 
+#           mp                 uvm_analysis_port           -     @890 
+#         rd_seqrh             router_rd_sequencer         -     @921 
+#           rsp_export         uvm_analysis_export         -     @928 
+#           seq_item_export    uvm_seq_item_pull_imp       -     @1022
+#           arbitration_queue  array                       0     -    
+#           lock_queue         array                       0     -    
+#           num_last_reqs      integral                    32    'd1  
+#           num_last_rsps      integral                    32    'd1  
+#     router_scoreboard        router_scoreboard           -     @540 
+#       fifo_rdh[0]            uvm_tlm_analysis_fifo #(T)  -     @1085
+#         analysis_export      uvm_analysis_imp            -     @1124
+#         get_ap               uvm_analysis_port           -     @1116
+#         get_peek_export      uvm_get_peek_imp            -     @1100
+#         put_ap               uvm_analysis_port           -     @1108
+#         put_export           uvm_put_imp                 -     @1092
+#       fifo_rdh[1]            uvm_tlm_analysis_fifo #(T)  -     @1132
+#         analysis_export      uvm_analysis_imp            -     @1171
+#         get_ap               uvm_analysis_port           -     @1163
+#         get_peek_export      uvm_get_peek_imp            -     @1147
+#         put_ap               uvm_analysis_port           -     @1155
+#         put_export           uvm_put_imp                 -     @1139
+#       fifo_rdh[2]            uvm_tlm_analysis_fifo #(T)  -     @1179
+#         analysis_export      uvm_analysis_imp            -     @1218
+#         get_ap               uvm_analysis_port           -     @1210
+#         get_peek_export      uvm_get_peek_imp            -     @1194
+#         put_ap               uvm_analysis_port           -     @1202
+#         put_export           uvm_put_imp                 -     @1186
+#       fifo_wrh[0]            uvm_tlm_analysis_fifo #(T)  -     @1038
+#         analysis_export      uvm_analysis_imp            -     @1077
+#         get_ap               uvm_analysis_port           -     @1069
+#         get_peek_export      uvm_get_peek_imp            -     @1053
+#         put_ap               uvm_analysis_port           -     @1061
+#         put_export           uvm_put_imp                 -     @1045
+#     wragt_toph               router_wr_agnt_top          -     @516 
+#       wr_agnth[0]            router_wr_agent             -     @1227
+#         wr_drvh              router_wr_driver            -     @1251
+#           rsp_port           uvm_analysis_port           -     @1266
+#           seq_item_port      uvm_seq_item_pull_port      -     @1258
+#         wr_monh              router_wr_monitor           -     @1236
+#           monitor_port       uvm_analysis_port           -     @1243
+#         wr_seqrh             router_wr_sequencer         -     @1274
+#           rsp_export         uvm_analysis_export         -     @1281
+#           seq_item_export    uvm_seq_item_pull_imp       -     @1375
+#           arbitration_queue  array                       0     -    
+#           lock_queue         array                       0     -    
+#           num_last_reqs      integral                    32    'd1  
+#           num_last_rsps      integral                    32    'd1  
+# --------------------------------------------------------------------
+# 
+# UVM_INFO ../rd_agnt_top/read_xtn.sv(28) @ 20: uvm_test_top.env_h.rdagt_toph.rd_agnth[0].rd_seqrh@@rd_seq.req [READ XTN] 
+# printing read transaction before driving
+# UVM_INFO ../wr_agnt_top/write_xtn.sv(29) @ 30: uvm_test_top.env_h.wragt_toph.wr_agnth[0].wr_seqrh@@wr_seq.req [ADDR] The randomized addr: 0
+# UVM_INFO ../wr_agnt_top/write_xtn.sv(37) @ 30: uvm_test_top.env_h.wragt_toph.wr_agnth[0].wr_seqrh@@wr_seq.req [WRITE XTN] 
+# Printing write transaction before driving
+# UVM_INFO ../wr_agnt_top/router_wr_driver.sv(42) @ 30: uvm_test_top.env_h.wragt_toph.wr_agnth[0].wr_drvh [ROUTER_WR_DRIVER] 
+# printing from write driver 
+#  --------------------------------------
+# Name           Type        Size  Value
+# --------------------------------------
+# req            source_xtn  -     @1415
+#   Header       integral    8     192  
+#   payload[0]   integral    8     158  
+#   payload[1]   integral    8     'd34 
+#   payload[2]   integral    8     'd108
+#   payload[3]   integral    8     'd6  
+#   payload[4]   integral    8     182  
+#   payload[5]   integral    8     'd42 
+#   payload[6]   integral    8     187  
+#   payload[7]   integral    8     'd20 
+#   payload[8]   integral    8     'd10 
+#   payload[9]   integral    8     'd71 
+#   payload[10]  integral    8     'd108
+#   payload[11]  integral    8     203  
+#   payload[12]  integral    8     134  
+#   payload[13]  integral    8     'd73 
+#   payload[14]  integral    8     'd88 
+#   payload[15]  integral    8     'd124
+#   payload[16]  integral    8     'd114
+#   payload[17]  integral    8     154  
+#   payload[18]  integral    8     213  
+#   payload[19]  integral    8     165  
+#   payload[20]  integral    8     145  
+#   payload[21]  integral    8     169  
+#   payload[22]  integral    8     'd65 
+#   payload[23]  integral    8     'd103
+#   payload[24]  integral    8     'd109
+#   payload[25]  integral    8     158  
+#   payload[26]  integral    8     183  
+#   payload[27]  integral    8     154  
+#   payload[28]  integral    8     'd119
+#   payload[29]  integral    8     223  
+#   payload[30]  integral    8     168  
+#   payload[31]  integral    8     254  
+#   payload[32]  integral    8     252  
+#   payload[33]  integral    8     135  
+#   payload[34]  integral    8     214  
+#   payload[35]  integral    8     184  
+#   payload[36]  integral    8     'd29 
+#   payload[37]  integral    8     'd26 
+#   payload[38]  integral    8     199  
+#   payload[39]  integral    8     149  
+#   payload[40]  integral    8     133  
+#   payload[41]  integral    8     236  
+#   payload[42]  integral    8     250  
+#   payload[43]  integral    8     'd73 
+#   payload[44]  integral    8     133  
+#   payload[45]  integral    8     236  
+#   payload[46]  integral    8     237  
+#   payload[47]  integral    8     'd57 
+#   parity       integral    8     165  
+# --------------------------------------
+# 
+# UVM_INFO ../wr_agnt_top/router_wr_monitor.sv(69) @ 1110: uvm_test_top.env_h.wragt_toph.wr_agnth[0].wr_monh [ROUTER_WR_MONITOR] 
+# printing from write monitor 
+#  --------------------------------------
+# Name           Type        Size  Value
+# --------------------------------------
+# mon_data       source_xtn  -     @1393
+#   Header       integral    8     192  
+#   payload[0]   integral    8     158  
+#   payload[1]   integral    8     'd34 
+#   payload[2]   integral    8     'd108
+#   payload[3]   integral    8     'd6  
+#   payload[4]   integral    8     182  
+#   payload[5]   integral    8     'd42 
+#   payload[6]   integral    8     187  
+#   payload[7]   integral    8     'd20 
+#   payload[8]   integral    8     'd10 
+#   payload[9]   integral    8     'd71 
+#   payload[10]  integral    8     'd108
+#   payload[11]  integral    8     203  
+#   payload[12]  integral    8     134  
+#   payload[13]  integral    8     'd73 
+#   payload[14]  integral    8     'd88 
+#   payload[15]  integral    8     'd124
+#   payload[16]  integral    8     'd114
+#   payload[17]  integral    8     154  
+#   payload[18]  integral    8     213  
+#   payload[19]  integral    8     165  
+#   payload[20]  integral    8     145  
+#   payload[21]  integral    8     169  
+#   payload[22]  integral    8     'd65 
+#   payload[23]  integral    8     'd103
+#   payload[24]  integral    8     'd109
+#   payload[25]  integral    8     158  
+#   payload[26]  integral    8     183  
+#   payload[27]  integral    8     154  
+#   payload[28]  integral    8     'd119
+#   payload[29]  integral    8     223  
+#   payload[30]  integral    8     168  
+#   payload[31]  integral    8     254  
+#   payload[32]  integral    8     252  
+#   payload[33]  integral    8     135  
+#   payload[34]  integral    8     214  
+#   payload[35]  integral    8     184  
+#   payload[36]  integral    8     'd29 
+#   payload[37]  integral    8     'd26 
+#   payload[38]  integral    8     199  
+#   payload[39]  integral    8     149  
+#   payload[40]  integral    8     133  
+#   payload[41]  integral    8     236  
+#   payload[42]  integral    8     250  
+#   payload[43]  integral    8     'd73 
+#   payload[44]  integral    8     133  
+#   payload[45]  integral    8     236  
+#   payload[46]  integral    8     237  
+#   payload[47]  integral    8     'd57 
+#   parity       integral    8     165  
+# --------------------------------------
+# 
+# UVM_INFO ../tb/router_scoreboard.sv(98) @ 1110: uvm_test_top.env_h.router_scoreboard [SCOREBOARD] 
+# Printing read data --------------------------------------
+# Name           Type        Size  Value
+# --------------------------------------
+# mon_data       source_xtn  -     @1393
+#   Header       integral    8     192  
+#   payload[0]   integral    8     158  
+#   payload[1]   integral    8     'd34 
+#   payload[2]   integral    8     'd108
+#   payload[3]   integral    8     'd6  
+#   payload[4]   integral    8     182  
+#   payload[5]   integral    8     'd42 
+#   payload[6]   integral    8     187  
+#   payload[7]   integral    8     'd20 
+#   payload[8]   integral    8     'd10 
+#   payload[9]   integral    8     'd71 
+#   payload[10]  integral    8     'd108
+#   payload[11]  integral    8     203  
+#   payload[12]  integral    8     134  
+#   payload[13]  integral    8     'd73 
+#   payload[14]  integral    8     'd88 
+#   payload[15]  integral    8     'd124
+#   payload[16]  integral    8     'd114
+#   payload[17]  integral    8     154  
+#   payload[18]  integral    8     213  
+#   payload[19]  integral    8     165  
+#   payload[20]  integral    8     145  
+#   payload[21]  integral    8     169  
+#   payload[22]  integral    8     'd65 
+#   payload[23]  integral    8     'd103
+#   payload[24]  integral    8     'd109
+#   payload[25]  integral    8     158  
+#   payload[26]  integral    8     183  
+#   payload[27]  integral    8     154  
+#   payload[28]  integral    8     'd119
+#   payload[29]  integral    8     223  
+#   payload[30]  integral    8     168  
+#   payload[31]  integral    8     254  
+#   payload[32]  integral    8     252  
+#   payload[33]  integral    8     135  
+#   payload[34]  integral    8     214  
+#   payload[35]  integral    8     184  
+#   payload[36]  integral    8     'd29 
+#   payload[37]  integral    8     'd26 
+#   payload[38]  integral    8     199  
+#   payload[39]  integral    8     149  
+#   payload[40]  integral    8     133  
+#   payload[41]  integral    8     236  
+#   payload[42]  integral    8     250  
+#   payload[43]  integral    8     'd73 
+#   payload[44]  integral    8     133  
+#   payload[45]  integral    8     236  
+#   payload[46]  integral    8     237  
+#   payload[47]  integral    8     'd57 
+#   parity       integral    8     165  
+# --------------------------------------
+# 
+# UVM_INFO ../rd_agnt_top/router_rd_monitor.sv(63) @ 1290: uvm_test_top.env_h.rdagt_toph.rd_agnth[0].rd_monh [ROUTER_RD_MONITOR] 
+# Printing from read monitor 
+#  ------------------------------------
+# Name           Type      Size  Value
+# ------------------------------------
+# mon_data       dest_xtn  -     @1411
+#   Header       integral  8     192  
+#   payload[0]   integral  8     158  
+#   payload[1]   integral  8     'd34 
+#   payload[2]   integral  8     'd108
+#   payload[3]   integral  8     'd6  
+#   payload[4]   integral  8     182  
+#   payload[5]   integral  8     'd42 
+#   payload[6]   integral  8     187  
+#   payload[7]   integral  8     'd20 
+#   payload[8]   integral  8     'd10 
+#   payload[9]   integral  8     'd71 
+#   payload[10]  integral  8     'd108
+#   payload[11]  integral  8     203  
+#   payload[12]  integral  8     134  
+#   payload[13]  integral  8     'd73 
+#   payload[14]  integral  8     'd88 
+#   payload[15]  integral  8     'd124
+#   payload[16]  integral  8     'd114
+#   payload[17]  integral  8     154  
+#   payload[18]  integral  8     213  
+#   payload[19]  integral  8     165  
+#   payload[20]  integral  8     145  
+#   payload[21]  integral  8     169  
+#   payload[22]  integral  8     'd65 
+#   payload[23]  integral  8     'd103
+#   payload[24]  integral  8     'd109
+#   payload[25]  integral  8     158  
+#   payload[26]  integral  8     183  
+#   payload[27]  integral  8     154  
+#   payload[28]  integral  8     'd119
+#   payload[29]  integral  8     223  
+#   payload[30]  integral  8     168  
+#   payload[31]  integral  8     254  
+#   payload[32]  integral  8     252  
+#   payload[33]  integral  8     135  
+#   payload[34]  integral  8     214  
+#   payload[35]  integral  8     184  
+#   payload[36]  integral  8     'd29 
+#   payload[37]  integral  8     'd26 
+#   payload[38]  integral  8     199  
+#   payload[39]  integral  8     149  
+#   payload[40]  integral  8     133  
+#   payload[41]  integral  8     236  
+#   payload[42]  integral  8     250  
+#   payload[43]  integral  8     'd73 
+#   payload[44]  integral  8     133  
+#   payload[45]  integral  8     236  
+#   payload[46]  integral  8     237  
+#   payload[47]  integral  8     'd57 
+#   Parity       integral  8     165  
+# ------------------------------------
+# 
+# UVM_INFO ../tb/router_scoreboard.sv(92) @ 1290: uvm_test_top.env_h.router_scoreboard [SCOREBOARD] 
+# Printing read data ------------------------------------
+# Name           Type      Size  Value
+# ------------------------------------
+# mon_data       dest_xtn  -     @1411
+#   Header       integral  8     192  
+#   payload[0]   integral  8     158  
+#   payload[1]   integral  8     'd34 
+#   payload[2]   integral  8     'd108
+#   payload[3]   integral  8     'd6  
+#   payload[4]   integral  8     182  
+#   payload[5]   integral  8     'd42 
+#   payload[6]   integral  8     187  
+#   payload[7]   integral  8     'd20 
+#   payload[8]   integral  8     'd10 
+#   payload[9]   integral  8     'd71 
+#   payload[10]  integral  8     'd108
+#   payload[11]  integral  8     203  
+#   payload[12]  integral  8     134  
+#   payload[13]  integral  8     'd73 
+#   payload[14]  integral  8     'd88 
+#   payload[15]  integral  8     'd124
+#   payload[16]  integral  8     'd114
+#   payload[17]  integral  8     154  
+#   payload[18]  integral  8     213  
+#   payload[19]  integral  8     165  
+#   payload[20]  integral  8     145  
+#   payload[21]  integral  8     169  
+#   payload[22]  integral  8     'd65 
+#   payload[23]  integral  8     'd103
+#   payload[24]  integral  8     'd109
+#   payload[25]  integral  8     158  
+#   payload[26]  integral  8     183  
+#   payload[27]  integral  8     154  
+#   payload[28]  integral  8     'd119
+#   payload[29]  integral  8     223  
+#   payload[30]  integral  8     168  
+#   payload[31]  integral  8     254  
+#   payload[32]  integral  8     252  
+#   payload[33]  integral  8     135  
+#   payload[34]  integral  8     214  
+#   payload[35]  integral  8     184  
+#   payload[36]  integral  8     'd29 
+#   payload[37]  integral  8     'd26 
+#   payload[38]  integral  8     199  
+#   payload[39]  integral  8     149  
+#   payload[40]  integral  8     133  
+#   payload[41]  integral  8     236  
+#   payload[42]  integral  8     250  
+#   payload[43]  integral  8     'd73 
+#   payload[44]  integral  8     133  
+#   payload[45]  integral  8     236  
+#   payload[46]  integral  8     237  
+#   payload[47]  integral  8     'd57 
+#   Parity       integral  8     165  
+# ------------------------------------
+# 
+# UVM_INFO ../tb/router_scoreboard.sv(109) @ 1290: uvm_test_top.env_h.router_scoreboard [SB] HEADER MATCHED SUCCESSFULLY
+# UVM_INFO ../tb/router_scoreboard.sv(113) @ 1290: uvm_test_top.env_h.router_scoreboard [SB] PAYLOAD MATCHED SUCCESSFULLY
+# UVM_INFO ../tb/router_scoreboard.sv(117) @ 1290: uvm_test_top.env_h.router_scoreboard [SB] PARITY MATCHED SUCCESSFULLY
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 1410: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO ../wr_agnt_top/router_wr_driver.sv(71) @ 1410: uvm_test_top.env_h.wragt_toph.wr_agnth[0].wr_drvh [router_wr_driver] 
+# Driver sent 1 transaction
+# UVM_INFO ../wr_agnt_top/router_wr_monitor.sv(34) @ 1410: uvm_test_top.env_h.wragt_toph.wr_agnth[0].wr_monh [router_wr_monitor] 
+# monitor sent 1 transaction
+# 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   21
+# UVM_WARNING :    0
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [ADDR]     1
+# [Questa UVM]     2
+# [READ XTN]     1
+# [RNTST]     1
+# [ROUTER_RD_MONITOR]     1
+# [ROUTER_WR_DRIVER]     1
+# [ROUTER_WR_MONITOR]     1
+# [SB]     3
+# [SCOREBOARD]     2
+# [TEST_DONE]     1
+# [TEST_RUN]     2
+# [UVMTOP]     2
+# [WRITE XTN]     1
+# [router_wr_driver]     1
+# [router_wr_monitor]     1
+# ** Note: $finish    : /home/cad/eda/Mentor_Graphics/Questasim/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+#    Time: 1410 ns  Iteration: 54  Instance: /top
+# Saving coverage database on exit...
+# End time: 23:58:06 on Feb 05,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1
