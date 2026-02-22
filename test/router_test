@@ -1,0 +1,235 @@
+//=============================
+//			TEST CASE 
+//=============================
+class router_base_test extends uvm_test;
+`uvm_component_utils(router_base_test)
+router_tb env_h;
+router_env_config m_cfg;
+router_wr_agent_config m_wr_cfg[];
+router_rd_agent_config m_rd_cfg[];
+int no_of_wragent=1;
+int no_of_rdagent=3;
+bit has_wragnt=1;
+bit has_rdagnt=1;
+int has_scoreboard=1;
+bit[1:0] addr;
+extern function new(string name="router_base_test",uvm_component parent);
+extern function void build_phase(uvm_phase phase);
+extern function void config_router();
+endclass
+
+function router_base_test::new(string name="router_base_test",uvm_component parent);
+super.new(name,parent);
+endfunction
+
+function void router_base_test::config_router();
+addr=$urandom_range(0,2);
+if(has_wragnt)
+begin
+	m_wr_cfg=new[no_of_wragent];
+	foreach(m_wr_cfg[i])
+	begin
+	m_wr_cfg[i]=router_wr_agent_config::type_id::create($sformatf("m_wr_cfg[%0d]",i));
+	if(!uvm_config_db #(virtual router_if)::get(this,"",$sformatf("vif_%0d",i),m_wr_cfg[i].vif))
+		`uvm_fatal("Vif CONFIG","Not able to get the vif config");
+	m_wr_cfg[i].is_active=UVM_ACTIVE;
+	m_cfg.wragt_cfg[i]=m_wr_cfg[i];
+	m_wr_cfg[i].no_of_wragent=no_of_wragent;
+	end
+end
+if(has_rdagnt)
+begin
+	m_rd_cfg=new[no_of_rdagent];
+	foreach(m_rd_cfg[i])
+	begin
+	m_rd_cfg[i]=router_rd_agent_config::type_id::create($sformatf("m_rd_cfg[%0d]",i));
+	if(!uvm_config_db #(virtual router_if)::get(this,"",$sformatf("vif_%0d",i+1),m_rd_cfg[i].vif))
+	`uvm_fatal("Vif CONFIG","Not able to get the vif config");
+	m_rd_cfg[i].is_active=UVM_ACTIVE;
+	m_cfg.rdagt_cfg[i]=m_rd_cfg[i];
+	m_rd_cfg[i].no_of_rdagent=no_of_rdagent;
+	end
+end
+
+m_cfg.no_of_wragent=no_of_wragent;
+m_cfg.no_of_rdagent=no_of_rdagent;
+m_cfg.has_scoreboard=has_scoreboard;
+
+m_cfg.has_wragnt=has_wragnt;
+m_cfg.has_rdagnt=has_rdagnt;
+m_cfg.addr=addr;
+endfunction
+
+function void router_base_test::build_phase(uvm_phase phase);
+m_cfg=router_env_config::type_id::create("m_cfg");
+if(has_wragnt)
+	m_cfg.wragt_cfg=new[no_of_wragent];
+if(has_rdagnt)
+	m_cfg.rdagt_cfg=new[no_of_rdagent];
+config_router();
+uvm_config_db #(router_env_config)::set(this,"*","router_env_config",m_cfg);
+
+super.build_phase(phase);
+
+env_h=router_tb::type_id::create("env_h",this);
+endfunction
+
+class router_small extends router_base_test;
+`uvm_component_utils(router_small)
+router_xtns_small_pkt wr_seq;
+router_destseq1 rd_seq;
+extern function new(string name="router_small",uvm_component parent);
+extern function void build_phase(uvm_phase phase);
+extern task run_phase(uvm_phase phase);
+endclass
+function router_small::new(string name="router_small", uvm_component parent);
+super.new(name,parent);
+endfunction
+function void router_small::build_phase(uvm_phase phase);
+super.build_phase(phase);
+wr_seq=router_xtns_small_pkt::type_id::create("wr_seq");
+rd_seq=router_destseq1::type_id::create("rd_seq");
+endfunction
+
+
+task router_small::run_phase(uvm_phase phase);
+    phase.raise_objection(this);
+
+    fork
+       
+        begin
+            `uvm_info("TEST_RUN", $sformatf("Starting Read Sequence on Port %0d", addr), UVM_LOW)
+			 #20;
+            rd_seq.start(env_h.rdagt_toph.rd_agnth[addr].rd_seqrh);
+        end
+
+       
+        begin
+            
+            `uvm_info("TEST_RUN", "Starting Write Sequence on Port 0", UVM_LOW)
+            wr_seq.start(env_h.wragt_toph.wr_agnth[0].wr_seqrh);
+        end
+    join
+    #100;
+    phase.drop_objection(this);
+endtask
+
+class router_medium extends router_base_test;
+`uvm_component_utils(router_medium)
+router_xtns_medium_pkt wr_seq;
+router_destseq1 rd_seq;
+extern function new(string name="router_medium",uvm_component parent);
+extern function void build_phase(uvm_phase phase);
+extern task run_phase(uvm_phase phase);
+endclass
+function router_medium::new(string name="router_medium", uvm_component parent);
+super.new(name,parent);
+endfunction
+function void router_medium::build_phase(uvm_phase phase);
+super.build_phase(phase);
+wr_seq=router_xtns_medium_pkt::type_id::create("wr_seq");
+rd_seq=router_destseq1::type_id::create("rd_seq");
+endfunction
+
+
+task router_medium::run_phase(uvm_phase phase);
+    phase.raise_objection(this);
+
+    fork
+       
+        begin
+            `uvm_info("TEST_RUN", $sformatf("Starting Read Sequence on Port %0d", addr), UVM_LOW)
+			 #20;
+            rd_seq.start(env_h.rdagt_toph.rd_agnth[addr].rd_seqrh);
+        end
+
+       
+        begin
+            
+            `uvm_info("TEST_RUN", "Starting Write Sequence on Port 0", UVM_LOW)
+            wr_seq.start(env_h.wragt_toph.wr_agnth[0].wr_seqrh);
+        end
+    join
+    #100;
+    phase.drop_objection(this);
+endtask
+
+class router_large extends router_base_test;
+`uvm_component_utils(router_large)
+router_xtns_large_pkt wr_seq;
+router_destseq1 rd_seq;
+extern function new(string name="router_large",uvm_component parent);
+extern function void build_phase(uvm_phase phase);
+extern task run_phase(uvm_phase phase);
+endclass
+function router_large::new(string name="router_large", uvm_component parent);
+super.new(name,parent);
+endfunction
+function void router_large::build_phase(uvm_phase phase);
+super.build_phase(phase);
+wr_seq=router_xtns_large_pkt::type_id::create("wr_seq");
+rd_seq=router_destseq1::type_id::create("rd_seq");
+endfunction
+
+
+task router_large::run_phase(uvm_phase phase);
+    phase.raise_objection(this);
+
+    fork
+       
+        begin
+            `uvm_info("TEST_RUN", $sformatf("Starting Read Sequence on Port %0d", addr), UVM_LOW)
+			 #20;
+            rd_seq.start(env_h.rdagt_toph.rd_agnth[addr].rd_seqrh);
+        end
+
+       
+        begin
+            
+            `uvm_info("TEST_RUN", "Starting Write Sequence on Port 0", UVM_LOW)
+            wr_seq.start(env_h.wragt_toph.wr_agnth[0].wr_seqrh);
+        end
+    join
+    #100;
+    phase.drop_objection(this);
+endtask
+
+class router_medium_dest2 extends router_base_test;
+`uvm_component_utils(router_medium_dest2)
+router_xtns_medium_pkt wr_seq;
+router_destseq2 rd_seq;
+extern function new(string name="router_medium_dest2",uvm_component parent);
+extern function void build_phase(uvm_phase phase);
+extern task run_phase(uvm_phase phase);
+endclass
+function router_medium_dest2::new(string name="router_medium_dest2", uvm_component parent);
+super.new(name,parent);
+endfunction
+function void router_medium_dest2::build_phase(uvm_phase phase);
+super.build_phase(phase);
+wr_seq=router_xtns_medium_pkt::type_id::create("wr_seq");
+rd_seq=router_destseq2::type_id::create("rd_seq");
+endfunction
+
+
+task router_medium_dest2::run_phase(uvm_phase phase);
+    phase.raise_objection(this);
+
+    fork
+       
+        begin
+            `uvm_info("TEST_RUN", $sformatf("Starting Read Sequence on Port %0d", addr), UVM_LOW)
+			 #20;
+            rd_seq.start(env_h.rdagt_toph.rd_agnth[addr].rd_seqrh);
+        end
+
+       
+        begin
+            
+            `uvm_info("TEST_RUN", "Starting Write Sequence on Port 0", UVM_LOW)
+            wr_seq.start(env_h.wragt_toph.wr_agnth[0].wr_seqrh);
+        end
+    join
+    #100;
+    phase.drop_objection(this);
+endtask
