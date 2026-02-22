@@ -1,0 +1,75 @@
+//============================================
+//		ENVIRONMENT 
+//============================================
+class router_tb extends uvm_env;
+    `uvm_component_utils(router_tb)
+    
+    
+    router_wr_agnt_top wragt_toph;
+    router_rd_agnt_top rdagt_toph;
+    router_scoreboard sb;
+    router_env_config m_cfg;
+
+    extern function new(string name="router_tb",uvm_component parent);
+    extern function void build_phase(uvm_phase phase);
+	extern function void connect_phase(uvm_phase phase);
+endclass
+
+function router_tb::new(string name="router_tb",uvm_component parent);
+    super.new(name,parent);
+endfunction
+
+function void router_tb::build_phase(uvm_phase phase);
+   
+    if(!uvm_config_db#(router_env_config)::get(this,"","router_env_config",m_cfg))
+    begin
+        `uvm_fatal("ENV_CONFIG","not able to get the config")
+    end
+
+   
+    if(m_cfg.has_wragnt) begin
+        wragt_toph=router_wr_agnt_top::type_id::create("wragt_toph",this);
+    end
+    
+    
+    foreach(m_cfg.wragt_cfg[i]) begin
+        uvm_config_db#(router_wr_agent_config)::set(this,
+            $sformatf("wragt_toph.wr_agnth[%0d]*",i),
+            "router_wr_agent_config",
+            m_cfg.wragt_cfg[i]);
+    end
+
+  
+    if(m_cfg.has_rdagnt) begin
+        rdagt_toph=router_rd_agnt_top::type_id::create("rdagt_toph",this);
+    end
+
+    foreach(m_cfg.rdagt_cfg[i]) begin
+        uvm_config_db#(router_rd_agent_config)::set(this,
+            $sformatf("rdagt_toph.rd_agnth[%0d]*",i),
+            "router_rd_agent_config",
+            m_cfg.rdagt_cfg[i]);
+    end
+
+    
+    if(m_cfg.has_scoreboard)
+        sb=router_scoreboard::type_id::create("router_scoreboard",this);
+endfunction
+
+function void router_tb::connect_phase(uvm_phase phase);
+if(m_cfg.has_scoreboard)
+begin
+	foreach(wragt_toph.wr_agnth[i])
+	begin
+			wragt_toph.wr_agnth[i].wr_monh.monitor_port.connect(sb.fifo_wrh[i].analysis_export);
+	end
+	foreach(rdagt_toph.rd_agnth[i])
+	begin
+			rdagt_toph.rd_agnth[i].rd_monh.mp.connect(sb.fifo_rdh[i].analysis_export);
+	end
+end
+else
+begin
+`uvm_info("SCOREBOARD","Scoreboard is not connected",UVM_LOW)
+end
+endfunction
